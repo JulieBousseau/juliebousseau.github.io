@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TP1 JS</title>
+</head>
+
+<body>
+
+    <p id="compteur">10</p>
+
+</body>
+
+
+<script>
+    //    let sec = 10;
+    //    let intervalle = setInterval(decrement, 1000);
+    //    
+    //    function decrement(sec) {
+    //        sec-=1;
+    //        let compteur = document.getElementById('compteur');
+    //        compteur.innerText = sec;
+    //        console.log("cc")
+    //        return sec;
+    //    }
+
+    function decrement() {
+        let compteur = document.getElementById("compteur");
+        let sec = 10;
+
+        setInterval(() => {
+            if (sec > 0) {
+                compteur.innerHTML = --sec;
+            }
+        }, 1000);
+    }
+
+    window.addEventListener('load', decrement);
+
+</script>
+
+</html>
