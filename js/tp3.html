@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TP3 JS</title>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="300" height="300">
+        Votre navigateur ne prend pas en charge le canvas
+    </canvas>
+
+</body>
+
+
+<script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let x = 10; // Position en x
+    let largeur = 100;
+    
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, 10, largeur, 100);
+
+    let interval = null;
+
+    function intervalle() {
+        clearInterval(lancement)
+        interval = window.setInterval(draw, 100); // Appelle la fonction toutes les 100ms
+    }
+
+    function draw() {      
+        if (x < 300-largeur) {
+            ctx.clearRect(x, 10, 100, 100);
+            x += 10;
+            ctx.fillRect(x, 10, 100, 100);
+        }
+        else {
+            clearInterval(interval);
+        }
+    }
+
+    let lancement = window.setInterval(intervalle, 2000); 
+
+</script>
+
+</html>
