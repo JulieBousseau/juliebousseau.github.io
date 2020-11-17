@@ -16,33 +16,44 @@
 
 
 <script>
-    let canvas = document.getElementById('canvas');
-    let ctx = canvas.getContext('2d');
-    let x = 10; // Position en x
-    let largeur = 100;
-    
-    ctx.fillStyle = 'red';
-    ctx.fillRect(x, 10, largeur, 100);
+    function deplacement() {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var x1 = 10,
+            x2 = 10,
+            x3 = 10;
+        ctx.fillStyle = "red";
+        // carré 1
+        ctx.fillRect(x1, 10, 100, 100);
+        // carré 2
+        ctx.fillRect(x2, 120, 100, 100);
+        // carré 3
+        ctx.fillRect(x3, 240, 100, 100);
+        let cpt = 0;
+        function callback() {
+            if (x1 < 400 && cpt >= 40) {
+                ctx.clearRect(x1, 10, 100, 100);
+                x1 += 10;
+                ctx.fillRect(x1, 10, 100, 100);
+            }
+            if (x2 < 400 && cpt >= 50) {
+                // 10 = 1 seconde de décalage
+                ctx.clearRect(x2, 120, 100, 100);
+                x2 += 10;
+                ctx.fillRect(x2, 120, 100, 100);
+            }
+            if (x3 < 400 && cpt >= 60) {
+                //50 = 1seconde du premier carré + 4 secondes de décalage
+                ctx.clearRect(x3, 240, 100, 100);
+                x3 += 10;
+                ctx.fillRect(x3, 240, 100, 100);
+            }
+            cpt++;
+        };
+        const interval = window.setInterval(callback, 100);
+    };
 
-    let interval = null;
-
-    function intervalle() {
-        clearInterval(lancement)
-        interval = window.setInterval(draw, 100); // Appelle la fonction toutes les 100ms
-    }
-
-    function draw() {      
-        if (x < 300-largeur) {
-            ctx.clearRect(x, 10, 100, 100);
-            x += 10;
-            ctx.fillRect(x, 10, 100, 100);
-        }
-        else {
-            clearInterval(interval);
-        }
-    }
-
-    let lancement = window.setInterval(intervalle, 2000); 
+    window.addEventListener("load", deplacement);
 
 </script>
 
