@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TP3 JS</title>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="300" height="500">
+        Votre navigateur ne prend pas en charge le canvas
+    </canvas>
+
+</body>
+
+
+<script>
+    let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
+  ctx.fillStyle = "red";
+  let x = 10, y = 10, w = 100, h = 100;
+  let interval;
+  let dixeme_secondes = 0;
+
+  let squares = [];
+
+  function createSquare () {
+    for (i = 0; i < 10; i++) {
+      ctx.fillRect(x, y, w, h);
+      squares[i] = { x: x, y: y };
+      y += 110;
+    }
+  };
+
+  function moveSelf(square) {
+    let xo = squares[square].x;
+    let yo = squares[square].y;
+    if (xo < 400 && dixeme_secondes >= 10 * i) {
+      ctx.clearRect(xo, yo, w, h);
+      xo += 10;
+      ctx.fillRect(xo, yo, w, h);
+    }
+    return { x: xo, y: yo };
+  }
+
+  function moveGroup(nbToMove) {
+    for (i = 0; i < nbToMove; i++) {
+      squares[i] = moveSelf(i);
+    }
+    dixeme_secondes++;
+  }
+
+  function squareInterval() {
+    clearInterval(interval);
+    interval = setInterval(moveGroup, 100, 10);
+  }
+
+  function deplacement () {
+    createSquare();
+    interval = setInterval(squareInterval, 4000);
+  };
+
+
+
+  window.addEventListener("load", deplacement);
+
+</script>
+
+</html>
